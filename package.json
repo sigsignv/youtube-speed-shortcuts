@@ -1,8 +1,10 @@
 {
-  "name": "wxt-starter",
-  "description": "manifest.json description",
   "private": true,
+  "name": "youtube-speed-shortcuts",
+  "description": "manifest.json description",
   "version": "0.0.0",
+  "author": "Sigsign <sig@signote.cc>",
+  "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "dev": "wxt",
