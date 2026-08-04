@@ -22,9 +22,13 @@
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
-			"extensions": [
-				"EditorConfig.EditorConfig"
-			]
+			"extensions": ["EditorConfig.EditorConfig", "biomejs.biome"],
+			"settings": {
+				"[typescript]": {
+					"editor.formatOnSave": true,
+					"editor.defaultFormatter": "biomejs.biome"
+				}
+			}
 		}
 	}
 
