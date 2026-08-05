@@ -1,10 +1,12 @@
 export type YouTubePlayerElement = Element & {
+  handleGlobalKeyDown(keyCode: number, shiftKey?: boolean): void;
   getAvailablePlaybackRates(): number[];
   getPlaybackRate(): number;
   setPlaybackRate(rate: number): void;
 };
 
 const requiredMethods = [
+  "handleGlobalKeyDown",
   "getAvailablePlaybackRates",
   "getPlaybackRate",
   "setPlaybackRate",
