@@ -7,36 +7,38 @@ declare global {
 }
 
 const NavigateFinishDetailSchema = v.object({
-  pageType: v.literal("watch"),
+  pageType: v.string(),
 });
 
-type WatchPageSetup = () => Disposer | undefined;
+type Unsubscribe = () => void;
 
 type Disposer = () => void;
 
-export function onWatchPageNavigate(setup: WatchPageSetup): Disposer {
-  let currentDisposer: Disposer | undefined;
+type WatchPageSetup = () => Disposer | undefined;
+
+export function onNavigateToWatchPage(setup: WatchPageSetup): Unsubscribe {
+  let disposer: Disposer | undefined;
 
   const dispose = () => {
+    const currentDisposer = disposer;
+    disposer = undefined;
     try {
       currentDisposer?.();
     } catch (error) {
       console.error("Failed to clean up:", error);
-    } finally {
-      currentDisposer = undefined;
     }
   };
 
   const listener = (event: CustomEvent<unknown>) => {
     dispose();
 
-    const parsed = v.safeParse(NavigateFinishDetailSchema, event.detail);
-    if (!parsed.success) {
+    const parseResult = v.safeParse(NavigateFinishDetailSchema, event.detail);
+    if (!parseResult.success || parseResult.output.pageType !== "watch") {
       return;
     }
 
     try {
-      currentDisposer = setup();
+      disposer = setup();
     } catch (error) {
       console.error("Failed to set up:", error);
     }
