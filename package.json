@@ -2,7 +2,7 @@
   "private": true,
   "name": "youtube-speed-shortcuts",
   "description": "Sets YouTube playback speed with keyboard shortcuts.",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "Sigsign <sig@signote.cc>",
   "license": "Apache-2.0",
   "type": "module",
